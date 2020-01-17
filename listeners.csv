@@ -1,0 +1,10 @@
+Station,Brand,Device,Geography,Hours,Sessions
+Heart,Heart 90,iPad,UK,95,5
+Heart,Heart 90,Android,UK,100,6
+Heart,Heart 90,Android,EU,105,3
+Heart,Heart 80,iPad,UK,112,4
+Heart,Heart 80,Android,UK,113,2
+Classic,Classic FM,PC,UK,123,5
+Classic,Classic FM,Android,UK,234,3
+Classic,Classic FM,iPad,UK,125,4
+Classic,Classic FM,Android,EU,421,2
