@@ -1,8 +1,8 @@
 #!python3
 import csv
-import itertools
+from collections import defaultdict
+import operator
 from pprint import pprint
-
 
 with open("listeners.csv", newline="") as f:
     reader = csv.DictReader(f)
@@ -10,31 +10,19 @@ with open("listeners.csv", newline="") as f:
 
 pprint(listeners)
 
-#
-# Make sure numbers are numbers
-#
-for listener in listeners:
-    listener['Hours'] = float(listener['Hours'])
-    listener['Sessions'] = float(listener['Sessions'])
+dimension_name = "Brand"
+measure_name = "Hours"
 
-pprint(listeners)
+listener_data = sorted(listeners, key=operator.itemgetter(dimension_name))
+summary_data = defaultdict(int)
+for listener in listener_data:
 
-## https://docs.python.org/3/library/itertools.html#itertools.groupby
+    dimension_value = listener[dimension_name]
+    measure_value = float(listener[measure_name])
 
-#~ station_hours = []
-#~ for listener in listeners:
-    #~ station_info = listener['Station'], float(listener['Hours'])
-    #~ station_hours.append(station_info)
-#~ station_hours.sort()
+    summary_data[dimension_value] += measure_value
 
-#~ pprint(station_hours)
+pprint(summary_data)
 
-#~ def key_on_station(l):
-    #~ return l['Station']
-
-#~ = sorted(listeners, key=key_on_station)
-#~ for station, info in itertools.groupby(station_info, key_on_station):
-    #~ total_hours = sum(float(i['Hours']) for i in info)
-    #~ print(station, "=>", total_hours)
-    #~ average_hours_per_session = sum(float(i['Hours']) for i in info) / sum(float(i['Sessions']) for i in info)
-    #~ print("Average", station, "=>", average_hours_per_session)
+for station, hours in summary_data.items():
+    print(station, "=>", hours)
