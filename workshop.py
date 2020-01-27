@@ -9,11 +9,11 @@ from pprint import pprint
 # Each item in the dictionary represents one named column in that row
 #
 
-with open("listeners.csv", newline="") as f:
+with open("listeners-new.csv", newline="") as f:
     reader = csv.DictReader(f)
     listeners = list(reader)
 
-pprint(listeners)
+pprint(listeners[:3])
 
 #
 # For a selected dimension (Brand, Station etc.) add up all
@@ -23,8 +23,8 @@ pprint(listeners)
 # the sum of all the corresponding values
 #
 
-dimension_name = "Brand"
-measure_name = "Sessions"
+dimension_name = "BRAND"
+measure_name = "ACTIVE_SESSIONS"
 
 summary_data = defaultdict(int)
 for listener in listeners:
