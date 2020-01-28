@@ -13,18 +13,10 @@ with open("listeners.csv", newline="", encoding='utf-8-sig') as f:
     reader = csv.DictReader(f)
     listeners = list(reader)
 
-#pprint(listeners)
-
-#
-# For a selected dimension (Brand, Station etc.) add up all
-# of a selected value (Hours, Sessions etc.)
-# The result is a dictionary where each key represents
-# one item in the dimension; and each value represents
-# the sum of all the corresponding values
-#
+pprint(listeners[0])
 
 dimension_name = "BRAND"
-measure_name = "ACTIVE_SESSIONS"
+measure_name = "TLH"
 
 summary_data = defaultdict(int)
 for listener in listeners:
@@ -34,18 +26,13 @@ for listener in listeners:
 
 pprint(summary_data)
 
-#
-# Show, in text form, the summary just created
-#
-
 for station, hours in summary_data.items():
     print(station, "=>", hours)
 
-########
-
-import os
+#import os
 import matplotlib
-open(os.path.expanduser("~/.matplotlib/matplotlibrc"), "w").write("backend: TkAgg")
+matplotlib.use('TkAgg')
+
 #
 # Show the same summary on a horizontal bar chart
 #
