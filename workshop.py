@@ -16,7 +16,7 @@ with open("listeners.csv", newline="", encoding='utf-8-sig') as f:
 pprint(listeners[0])
 
 dimension_name = "BRAND"
-measure_name = "TLH"
+measure_name = "ACTIVE_SESSIONS"
 
 summary_data = defaultdict(int)
 for listener in listeners:
@@ -26,7 +26,9 @@ for listener in listeners:
 
 pprint(summary_data)
 
-for station, hours in summary_data.items():
+summary_data_sort = sorted(summary_data.items(), key=lambda v:v[-1], reverse=True)
+
+for station, hours in summary_data_sort:
     print(station, "=>", hours)
 
 #import os
